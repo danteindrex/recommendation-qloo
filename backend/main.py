@@ -5,7 +5,7 @@ import uvicorn
 
 from app.core.config import settings
 from app.core.database import init_db
-from app.api.routes import auth, cultural, analytics, admin, websocket
+from app.api.routes import auth, cultural, analytics, admin, websocket, social_media
 
 
 @asynccontextmanager
@@ -38,6 +38,7 @@ app.include_router(auth.router, prefix="/api/auth", tags=["authentication"])
 app.include_router(cultural.router, prefix="/api/cultural", tags=["cultural"])
 app.include_router(analytics.router, prefix="/api/analytics", tags=["analytics"])
 app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
+app.include_router(social_media.router, prefix="/api/social-media", tags=["social-media"])
 app.include_router(websocket.router, prefix="/ws", tags=["websocket"])
 
 
