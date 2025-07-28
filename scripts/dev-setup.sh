@@ -47,12 +47,11 @@ fi
 
 echo "🎉 Development environment setup complete!"
 echo ""
-echo "📋 Next steps:"
-echo "1. Update .env file with your API keys"
-echo "2. Visit http://localhost:3000 for the frontend"
-echo "3. Visit http://localhost:8000/docs for API documentation"
+echo "🔍 Running verification tests..."
+python3 verify_setup.py
 echo ""
 echo "🛠️  Useful commands:"
 echo "- docker-compose logs -f: View logs"
 echo "- docker-compose down: Stop services"
 echo "- docker-compose up -d: Start services"
+echo "- python3 verify_setup.py: Run verification tests"

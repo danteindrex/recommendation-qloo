@@ -29,8 +29,8 @@ class ConnectionStatus(str, enum.Enum):
 class CulturalProfile(Base):
     __tablename__ = "cultural_profiles"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     diversity_score = Column(DECIMAL(5, 2), default=0.0)
     evolution_data = Column(JSON, default={})
     influence_network = Column(JSON, default={})
@@ -43,8 +43,8 @@ class CulturalProfile(Base):
 class SocialConnection(Base):
     __tablename__ = "social_connections"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     platform = Column(Enum(SocialPlatform), nullable=False)
     platform_user_id = Column(String(255), nullable=False)
     access_token = Column(Text, nullable=False)
@@ -58,8 +58,8 @@ class SocialConnection(Base):
 class CulturalDataPoint(Base):
     __tablename__ = "cultural_data_points"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     platform = Column(Enum(SocialPlatform), nullable=False)
     data_type = Column(Enum(CulturalDataType), nullable=False)
     content = Column(JSON, nullable=False)
