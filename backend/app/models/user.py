@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, DateTime, Enum, Text, JSON
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from app.core.database import Base
 import uuid
@@ -21,7 +20,7 @@ class SubscriptionType(str, enum.Enum):
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     email = Column(String(255), unique=True, nullable=False, index=True)
     passkey_credential = Column(Text, nullable=True)
     google_id = Column(String(255), nullable=True)

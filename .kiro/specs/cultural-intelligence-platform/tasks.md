@@ -7,7 +7,7 @@
   - Configure Redis for caching and session management
   - _Requirements: 1.1, 1.2, 4.1, 7.1_
 
-- [ ] 2. Implement authentication system with passkey and Google OAuth
+- [x] 2. Implement authentication system with passkey and Google OAuth
   - Create user registration and login endpoints with JWT token generation
   - Implement passkey authentication for passwordless login
   - Integrate Google OAuth Sign-in with proper token handling
