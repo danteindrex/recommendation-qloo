@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  culturalus-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: culturalus-api-demo
+    ports:
+      - "8000:8000"  # FastAPI backend
+      - "8501:8501"  # Streamlit demo
+    environment:
+      - ENVIRONMENT=production
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./.env:/app/.env:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: culturalus-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - culturalus-demo
+    restart: unless-stopped
+    profiles:
+      - proxy
