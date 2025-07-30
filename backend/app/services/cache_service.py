@@ -4,6 +4,10 @@ from typing import Any, Optional
 from app.core.config import settings
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class CacheService:
     def __init__(self):
         self.redis_client = redis.from_url(settings.REDIS_URL, decode_responses=True)
@@ -13,10 +17,13 @@ class CacheService:
         try:
             value = await self.redis_client.get(key)
             if value:
+                logger.info(f"Cache hit for key: {key}")
                 return json.loads(value)
-            return None
+            else:
+                logger.info(f"Cache miss for key: {key}")
+                return None
         except Exception as e:
-            print(f"Cache get error: {e}")
+            logger.error(f"Cache get error: {e}")
             return None
     
     async def set(self, key: str, value: Any, expire: int = 3600) -> bool:
@@ -78,3 +85,8 @@ class CacheService:
 
 # Global cache instance
 cache = CacheService()
+
+
+async def get_cache_service() -> CacheService:
+    """Get the global cache service instance."""
+    return cache

@@ -1,5 +1,7 @@
 from pydantic_settings import BaseSettings
 from typing import List
+from pydantic import field_validator
+import os
 
 
 class Settings(BaseSettings):
@@ -26,7 +28,7 @@ class Settings(BaseSettings):
     RP_ORIGIN: str = "http://localhost:3000"
     
     # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
+    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "http://localhost:5173"]
     
     # External APIs
     SUPABASE_URL: str = ""
@@ -40,12 +42,28 @@ class Settings(BaseSettings):
     SPOTIFY_CLIENT_ID: str = ""
     SPOTIFY_CLIENT_SECRET: str = ""
     
-    # AI Services
+    # AI Services - Gemini is REQUIRED
     QLOO_API_KEY: str = ""
-    GEMINI_API_KEY: str = ""
+    QLOO_CLIENT_ID: str = ""
+    GEMINI_API_KEY: str
+    
+    # Kafka
+    KAFKA_BOOTSTRAP_SERVERS: str = "localhost:9092"
+    
+    @field_validator('GEMINI_API_KEY')
+    @classmethod
+    def validate_gemini_api_key(cls, v):
+        if not v or v.strip() == "":
+            raise ValueError("GEMINI_API_KEY is required and cannot be empty. Please set your Gemini API key in the .env file.")
+        return v.strip()
+    
+    # For backward compatibility
+    @property
+    def GOOGLE_GEMINI_API_KEY(self) -> str:
+        return self.GEMINI_API_KEY
     
     class Config:
-        env_file = ".env"
+        env_file = "../.env"
 
 
 settings = Settings()

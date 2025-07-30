@@ -1,0 +1,107 @@
+/* Colorful Elegant Design System - Color Palette */
+
+:root {
+  /* Primary Gradients - Vibrant yet sophisticated */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  --gradient-primary-active: linear-gradient(135deg, #4e60c6 0%, #5e377e 100%);
+  
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-secondary-hover: linear-gradient(135deg, #ee81f9 0%, #f3455a 100%);
+  --gradient-secondary-active: linear-gradient(135deg, #ec6ff7 0%, #f13348 100%);
+  
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-accent-hover: linear-gradient(135deg, #3d9aec 0%, #00e0ec 100%);
+  --gradient-accent-active: linear-gradient(135deg, #2b88da 0%, #00ceda 100%);
+  
+  --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-error: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  --gradient-info: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  
+  /* Cultural Category Colors */
+  --color-music: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  --color-visual-arts: linear-gradient(135deg, #48cae4 0%, #023e8a 100%);
+  --color-cuisine: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+  --color-literature: linear-gradient(135deg, #7209b7 0%, #480ca8 100%);
+  --color-social: linear-gradient(135deg, #f77f00 0%, #fcbf49 100%);
+  --color-technology: linear-gradient(135deg, #06ffa5 0%, #00d4aa 100%);
+  
+  /* Interactive States */
+  --color-hover-glow: rgba(102, 126, 234, 0.3);
+  --color-active-glow: rgba(118, 75, 162, 0.5);
+  --color-focus-ring: rgba(79, 172, 254, 0.4);
+  --color-selection: rgba(240, 147, 251, 0.2);
+  
+  /* Glass Morphism */
+  --glass-background: rgba(255, 255, 255, 0.1);
+  --glass-background-hover: rgba(255, 255, 255, 0.15);
+  --glass-background-active: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-hover: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --glass-backdrop: blur(8px);
+  --glass-backdrop-strong: blur(12px);
+  
+  /* 3D Effects */
+  --shadow-3d-sm: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-3d-md: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-3d-lg: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-3d-xl: 0 16px 32px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-glow-primary: 0 0 20px rgba(102, 126, 234, 0.4);
+  --shadow-glow-secondary: 0 0 20px rgba(240, 147, 251, 0.4);
+  --shadow-glow-accent: 0 0 20px rgba(79, 172, 254, 0.4);
+  
+  /* Particle Colors */
+  --particle-primary: #667eea;
+  --particle-secondary: #f093fb;
+  --particle-accent: #4facfe;
+  --particle-success: #43e97b;
+  --particle-warning: #fa709a;
+  --particle-error: #ff6b6b;
+  
+  /* Animation Timings */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Elegant Spacing */
+  --space-3d-depth: 8px;
+  --space-3d-depth-lg: 12px;
+  --space-3d-depth-xl: 16px;
+  
+  /* Border Radius */
+  --radius-elegant: 12px;
+  --radius-elegant-lg: 16px;
+  --radius-elegant-xl: 20px;
+  --radius-pill: 9999px;
+}
+
+/* Dark theme variations */
+[data-theme="dark"] {
+  --glass-background: rgba(0, 0, 0, 0.3);
+  --glass-background-hover: rgba(0, 0, 0, 0.4);
+  --glass-background-active: rgba(0, 0, 0, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* High contrast theme for accessibility */
+[data-theme="high-contrast"] {
+  --gradient-primary: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --gradient-secondary: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  --gradient-accent: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+  --color-focus-ring: rgba(0, 102, 204, 0.8);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-bounce: 0ms;
+  }
+}

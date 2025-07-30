@@ -78,6 +78,33 @@ def require_roles(*required_roles: UserRole):
     return roles_checker
 
 
+async def get_current_user_websocket(
+    token: str,
+    db: AsyncSession
+) -> Optional[User]:
+    """Get current authenticated user from JWT token for WebSocket connections."""
+    try:
+        # Check if token is blacklisted
+        if await auth_service.is_token_blacklisted(token):
+            return None
+        
+        # Verify token
+        payload = await auth_service.verify_token(token, "access")
+        if payload is None:
+            return None
+        
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            return None
+        
+        # Get user from database
+        user = await auth_service.get_user_by_id(db, user_id)
+        return user
+        
+    except Exception:
+        return None
+
+
 # Convenience dependencies for common role checks
 require_consumer = require_role(UserRole.CONSUMER)
 require_enterprise = require_role(UserRole.ENTERPRISE)
